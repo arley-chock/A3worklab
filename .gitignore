@@ -41,3 +41,6 @@ next-env.d.ts
 # Supabase
 .supabase/ 
 /src/generated/prisma
+
+# Variáveis de ambiente
+.env
