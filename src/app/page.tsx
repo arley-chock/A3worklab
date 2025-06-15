@@ -1,16 +1,8 @@
-'use client'
+"use client"
 
-import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import { Navbar } from '@/components/Navbar'
-import Link from 'next/link'
-import {
-  UsersIcon,
-  CalendarIcon,
-  ClipboardDocumentListIcon,
-  ClockIcon,
-} from '@heroicons/react/24/outline';
+import { useState } from 'react'
+import { useAuthContext } from '@/contexts/AuthContext'
+import { UsersIcon, ClipboardDocumentListIcon, CalendarIcon, ClockIcon } from '@heroicons/react/24/outline'
 
 const stats = [
   {
@@ -71,6 +63,9 @@ const upcomingReservations = [
 ];
 
 export default function DashboardPage() {
+  const { user } = useAuthContext()
+  const [loading, setLoading] = useState(false)
+
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">

@@ -76,7 +76,7 @@ export async function GET() {
     }
 
     // Taxa de Utilização por Recurso (simplificada: % de reservas em relação ao total de reservas)
-    const resourceCounts: ResourceCount[] = await prisma.reservation.groupBy({
+    const resourceCounts = await prisma.reservation.groupBy({
       by: ['resourceId'],
       _count: {
         resourceId: true,
@@ -111,10 +111,17 @@ export async function GET() {
         changeType: 'positive',
       },
       {
-        name: 'Recursos Total',
+        name: 'Total de Recursos',
         value: String(totalResources),
         icon: 'BuildingOfficeIcon',
         change: '+0', // Simplificado
+        changeType: 'neutral',
+      },
+      {
+        name: 'Total de Usuários',
+        value: String(totalUsers),
+        icon: 'UserGroupIcon',
+        change: '+0',
         changeType: 'neutral',
       },
       {
@@ -122,6 +129,20 @@ export async function GET() {
         value: String(pendingReservations),
         icon: 'CalendarIcon',
         change: '+0', // Simplificado
+        changeType: 'neutral',
+      },
+      {
+        name: 'Reservas Canceladas',
+        value: String(cancelledReservations),
+        icon: 'ChartBarIcon',
+        change: '+0',
+        changeType: 'neutral',
+      },
+      {
+        name: 'Recurso Mais Utilizado',
+        value: mostUsedResourceName,
+        icon: 'BuildingOfficeIcon',
+        change: `${mostUsedResourceCount} reservas`,
         changeType: 'neutral',
       },
     ];

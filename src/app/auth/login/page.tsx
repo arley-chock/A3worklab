@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { useAuthContext } from '@/contexts/AuthContext'
 
@@ -11,8 +10,6 @@ export default function LoginPage() {
     password: '',
   })
   const [rememberMe, setRememberMe] = useState(false)
-  const router = useRouter()
-  const searchParams = useSearchParams()
   const { login, error: authError, loading } = useAuthContext()
 
   const handleSubmit = async (e: React.FormEvent) => {

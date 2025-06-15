@@ -22,6 +22,7 @@ export default function RegisterPage() {
       return
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { confirmPassword, ...userData } = formData
     await register(userData)
   }

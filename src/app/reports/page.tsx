@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import {
   ChartBarIcon,
   ClockIcon,
-  UserGroupIcon,
   BuildingOfficeIcon,
   CalendarIcon,
 } from '@heroicons/react/24/outline';
@@ -21,6 +20,14 @@ interface Stat {
 interface ResourceUtilization {
   name: string;
   utilization: number;
+}
+
+interface ApiStat {
+  name: string;
+  value: string;
+  icon: string;
+  change: string;
+  changeType: 'positive' | 'negative' | 'neutral';
 }
 
 export default function ReportsPage() {
@@ -51,7 +58,7 @@ export default function ReportsPage() {
         console.log('Dados recebidos da API de relatórios:', data);
 
         // Mapear os ícones de volta para os componentes React
-        const mappedStats: Stat[] = data.stats.map((stat: any) => {
+        const mappedStats: Stat[] = data.stats.map((stat: ApiStat) => {
           let IconComponent;
           switch (stat.icon) {
             case 'ChartBarIcon':

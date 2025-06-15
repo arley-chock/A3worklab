@@ -1,11 +1,9 @@
 "use client";
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { UserCircleIcon } from '@heroicons/react/24/outline';
 
 export default function ProfilePage() {
-  const router = useRouter();
   const [formData, setFormData] = useState({
     name: 'João Silva',
     email: 'joao.silva@empresa.com',
